@@ -2,10 +2,11 @@ import Image from "next/image";
 import TopMenuItem from "./TopMenuItem";
 import logo from "./../../public/static/images/logo.svg";
 import { SearchIcon } from "@heroicons/react/solid";
+import HeaderCategoriesItem from "./HeaderCategoriesItem";
 
 function Header() {
   return (
-    <div className=" max-w-6xl w-9/12 h-2/4  ">
+    <div className=" max-w-6xl w-9/12 h-4/5  ">
       <div className="flex justify-between  pt-2 items-center content-center">
         <div className="flex">
           <TopMenuItem text={"Write a Review"} />
@@ -32,24 +33,33 @@ function Header() {
           className="align-centre"
         />
         <div className="flex justify-center mt-12">
-          <div className="flex justify-center flex-grow bg-white p-3  ">
+          <div className="flex justify-center flex-grow bg-white p-3  rounded-l-md ">
             <input
               type="text"
               name="dssds"
               id="category"
-              className="mt-1  block w-full shadow-sm sm:text-sm border-none active:border-none "
+              placeholder="Nail salons, Plumbers, Takeout..."
+              className="mt-1 ml-2 block w-full shadow-sm sm:text-xl text-black font-normal focus:outline-none"
             />
-            <div className="bg-red-700 border-r-2 border-black mx-3" />
+            <div className=" border-r-2 border-b-slate-900 mx-5" />
             <input
               type="text"
               name="dssds"
               id="category"
-              className="mt-1  block w-full shadow-sm sm:text-sm border-none"
+              placeholder="Address, Neighborhood, City, State or Zip"
+              className="mt-1  block w-full shadow-sm sm:text-xl text-black font-normal focus:outline-none"
             />
           </div>
-          <div className="bg-red-900 justify-center h-full py-3 px-7">
+          <div className="bg-red-900 justify-center h-full py-3 px-7 rounded-r-md">
             <SearchIcon className="h-8 w-8 text-white justify-center" />
           </div>
+        </div>
+        <div className="flex justify-center mt-5 mb-36 ">
+          <HeaderCategoriesItem text={"Plumbers"} />
+          <HeaderCategoriesItem text={"Restaurants"} />
+          <HeaderCategoriesItem text={"Home Service"} />
+          <HeaderCategoriesItem text={"Delivery"} />
+          <HeaderCategoriesItem text={"Black Owned"} />
         </div>
       </div>
     </div>
