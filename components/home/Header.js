@@ -30,7 +30,7 @@ function Header() {
           alt="Pturk Logo"
           width="150"
           height="100"
-          className="align-centre"
+          className="align-center"
         />
         <div className="flex justify-center mt-12">
           <div className="flex justify-center flex-grow bg-white p-3  rounded-l-md ">
@@ -51,7 +51,7 @@ function Header() {
             />
           </div>
           <div className="bg-red-900 justify-center h-full py-3 px-7 rounded-r-md">
-            <SearchIcon className="h-8 w-8 text-white justify-center" />
+            <SearchIcon className=" h-8 w-8 text-white justify-center " />
           </div>
         </div>
         <div className="flex justify-center mt-5 mb-36 ">
