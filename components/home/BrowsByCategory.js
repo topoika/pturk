@@ -9,20 +9,14 @@ import Automotive from "./../../public/static/images/categories/auto.png";
 import HomeService from "./../../public/static/images/categories/home.png";
 import OtherCate from "./../../public/static/images/categories/more.png";
 
-function BrowsByCategory() {
+function BrowsByCategory({ props }) {
   return (
-    <div className="w-full flex justify-center flex-col items-center">
+    <div className="w-full flex  justify-center flex-col items-center ">
       <Titles title={"Browse Businesses by Category"} />
-      <div className="max-w-6xl w-9/12 flex justify-between mt-7">
-        <BottomCategory img={Restaurants} name="Restaurants" />
-        <BottomCategory img={Shopping} name="Shopping" />
-        <BottomCategory img={NightLife} name="NightLife" />
-        <BottomCategory img={ActiveLife} name="Active Life" />
-      </div>
-      <div className="max-w-6xl w-9/12 flex justify-between">
-        <BottomCategory img={BeautySpas} name="Beauty & Spas" />
-        <BottomCategory img={Automotive} name="Automotive" />
-        <BottomCategory img={HomeService} name="Home Services" />
+      <div className="max-w-6xl  w-9/12 grid  mt-7 grid-flow-row grid-cols-4 ">
+        {props.data.map((res) => (
+          <BottomCategory key={res.id} img={res.image} name={res.name} />
+        ))}
         <BottomCategory img={OtherCate} name="Other Categories" />
       </div>
     </div>

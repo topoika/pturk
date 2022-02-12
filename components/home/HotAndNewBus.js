@@ -1,11 +1,13 @@
 import HotAndNewBusItem from "./HotAndNewBusItem";
 import Titles from "./simplecomponents/Titles";
 import One from "./../../public/static/images/listings/one.png";
+import Two from "./../../public/static/images/listings/two.png";
+import Three from "./../../public/static/images/listings/three.png";
 
 function HotAndNewBus() {
   return (
     <div className="w-full flex justify-center flex-col items-center">
-      <Titles title={"Recent Collections"} />
+      <Titles title={"Hot and New Businesses in Town"} />
       <div className="max-w-6xl w-9/12 flex justify-between mt-7 ">
         <HotAndNewBusItem
           name="Nash Hot Chicken & Ramen"
@@ -18,7 +20,7 @@ function HotAndNewBus() {
         />
         <HotAndNewBusItem
           name="Sunday Lunch"
-          img={One}
+          img={Two}
           reviews="456"
           cost="$$"
           city="Angara"
@@ -27,7 +29,7 @@ function HotAndNewBus() {
         />
         <HotAndNewBusItem
           name="Black Owned Restaurants Near Me"
-          img={One}
+          img={Three}
           reviews="10"
           cost="$$$$"
           city="Nairobi"
