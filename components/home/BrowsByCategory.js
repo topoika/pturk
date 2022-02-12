@@ -1,12 +1,6 @@
 import BottomCategory from "./BottomCategory";
+import Link from "next/link";
 import Titles from "./simplecomponents/Titles";
-import Restaurants from "./../../public/static/images/categories/rest.png";
-import Shopping from "./../../public/static/images/categories/shopping.png";
-import NightLife from "./../../public/static/images/categories/nightlife.png";
-import ActiveLife from "./../../public/static/images/categories/active.png";
-import BeautySpas from "./../../public/static/images/categories/beauty.png";
-import Automotive from "./../../public/static/images/categories/auto.png";
-import HomeService from "./../../public/static/images/categories/home.png";
 import OtherCate from "./../../public/static/images/categories/more.png";
 
 function BrowsByCategory({ props }) {
@@ -15,7 +9,21 @@ function BrowsByCategory({ props }) {
       <Titles title={"Browse Businesses by Category"} />
       <div className="max-w-6xl  w-9/12 grid  mt-7 grid-flow-row grid-cols-4 ">
         {props.data.map((res) => (
-          <BottomCategory key={res.id} img={res.image} name={res.name} />
+          <Link
+            key={res.id}
+            href={{
+              pathname: "/search",
+              query: {
+                id: res.id,
+                title: res.name,
+              },
+            }}
+            as={`search`}
+          >
+            <a>
+              <BottomCategory img={res.image} name={res.name} />
+            </a>
+          </Link>
         ))}
         <BottomCategory img={OtherCate} name="Other Categories" />
       </div>

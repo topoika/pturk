@@ -19,7 +19,7 @@ export default function Home(props) {
         <Header />
       </div>
       <div className=" h-fit bg-[#F5F5F5] flex  py-9 justify-center">
-        <FindBestBus />
+        <FindBestBus props={props.randomsubcategories} />
       </div>
       <div className="bg-white  py-9 flex justify-center">
         <HotAndNewBus />
@@ -43,9 +43,13 @@ export async function getServerSideProps(context) {
   var featured_categories = await fetch(
     "http://localhost:3001/api/featuredcategories"
   ).then((res) => res.json());
+  var random_sub_categories = await fetch(
+    "http://localhost:3001/api/randomsubcategories"
+  ).then((res) => res.json());
   return {
     props: {
       homecategories: featured_categories,
+      randomsubcategories: random_sub_categories,
     },
   };
 }
