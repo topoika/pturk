@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Plumbers from "./../../public/static/images/menu/plm.svg";
+import Plumbers from "./../../public/static/images/menu/one.svg";
 function HeaderCategoriesItem({ text }) {
   return (
     <div className="flex">
@@ -8,11 +8,10 @@ function HeaderCategoriesItem({ text }) {
         alt={text}
         height="20"
         width="20"
-        color="white"
-        className="fill-white stroke-white "
+        className="fill-white"
       />
 
-      <p className="text-s font-bold px-5 pl-1.5 cursor-pointer  hover:animate-pulse">
+      <p className="text-white text-s font-bold px-5 pl-1.5 cursor-pointer  hover:animate-pulse">
         {text}
       </p>
     </div>

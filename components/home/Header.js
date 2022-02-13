@@ -18,7 +18,7 @@ function Header() {
           <TopMenuItem text={"Login"} />
           <button
             type="button"
-            className="w-full inline-flex justify-center rounded-md border border-white ml-3  px-6 py-2 bg-transparent text-base font-bold cursor-pointer  hover:bg-gray-50 hover:text-gray-900"
+            className="w-full inline-flex justify-center rounded-md border text-white border-white ml-3  px-6 py-2 bg-transparent text-base font-bold cursor-pointer  hover:bg-gray-50 hover:text-gray-900"
           >
             Sign Up
           </button>
@@ -50,7 +50,7 @@ function Header() {
               className="mt-1  block w-full shadow-sm sm:text-xl text-black font-normal focus:outline-none"
             />
           </div>
-          <div className="bg-red-900 justify-center h-full py-3 px-7 rounded-r-md">
+          <div className="bg-[#E00707] justify-center h-full py-3 px-7 rounded-r-md">
             <SearchIcon className=" h-8 w-8 text-white justify-center " />
           </div>
         </div>
