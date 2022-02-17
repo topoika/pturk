@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "./../../public/static/images/logo.svg";
+import logo from "./../../public/static/images/logo.png";
 import { SearchIcon, ArrowSmDownIcon } from "@heroicons/react/solid";
 import TopMenuItem from "../home/TopMenuItem";
 import Link from "next/link";

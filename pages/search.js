@@ -1,7 +1,3 @@
-import Header from "../components/home/Header";
-import React, { useEffect, useState } from "react";
-import Router, { useRouter } from "next/router";
-import { route } from "next/dist/server/router";
 import UniversalHeadder from "../components/universal/UniversalHeadder";
 
 export default function Search(props) {
