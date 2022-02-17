@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Footer from "../components/home/Footer";
 import SocialAuthButton from "../components/home/simplecomponents/SocialAuthButton";
 import AuthHeader from "../components/universal/AuthHeader";
@@ -19,9 +20,13 @@ export default function Login() {
                 <p className=" place-items-center text-black font-medium text-base my-[5px]">
                   New to Pturk?
                 </p>
-                <p className=" place-items-center text-[#0073bb] font-medium  ml-2 text-base hover:underline cursor-pointer">
-                  Sign Up
-                </p>
+                <Link href={"/signup"}>
+                  <a>
+                    <p className=" place-items-center text-[#0073bb] font-medium  ml-2 text-base hover:underline cursor-pointer">
+                      Sign Up
+                    </p>
+                  </a>
+                </Link>
               </div>
             </div>
 
@@ -70,9 +75,13 @@ export default function Login() {
                   <p className=" place-items-center text-right font-normal text-black opacity-50 ml-2 text-sm">
                     New to Pturk?
                   </p>
-                  <p className=" place-items-center text-right font-normal text-[#0073bb] hover:underline cursor-pointer  ml-[2px] text-sm ">
-                    Sign Up
-                  </p>
+                  <Link href={"/signup"}>
+                    <a>
+                      <p className=" place-items-center text-right font-normal text-[#0073bb] hover:underline cursor-pointer  ml-[2px] text-sm ">
+                        Sign Up
+                      </p>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>
