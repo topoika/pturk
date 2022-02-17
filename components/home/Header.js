@@ -21,12 +21,16 @@ function Header() {
               <TopMenuItem text={"Login"} />
             </a>
           </Link>
-          <button
-            type="button"
-            className="w-full inline-flex justify-center rounded-md border text-white border-white ml-3  px-6 py-2 bg-transparent text-base font-bold cursor-pointer  hover:bg-gray-50 hover:text-gray-900"
-          >
-            Sign Up
-          </button>
+          <Link href={"/signup"}>
+            <a>
+              <button
+                type="button"
+                className="w-full inline-flex justify-center rounded-md border text-white border-white ml-3  px-6 py-2 bg-transparent text-base font-bold cursor-pointer  hover:bg-gray-50 hover:text-gray-900"
+              >
+                Sign Up
+              </button>
+            </a>
+          </Link>
         </div>
       </div>
       <div className=" flex flex-col justify-center pt-28 ">

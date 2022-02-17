@@ -4,7 +4,7 @@ import SocialAuthButton from "../components/home/simplecomponents/SocialAuthButt
 import AuthHeader from "../components/universal/AuthHeader";
 import AuthImage from "./../public/static/images/auth_page.png";
 
-export default function Login() {
+export default function signup() {
   return (
     <div className="flex  flex-col">
       <AuthHeader />

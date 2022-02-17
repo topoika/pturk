@@ -1,16 +1,47 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
+import Google from "./../../../public/static/images/social-auth/google.png";
 
-function SocialAuthButton({ colortext, colorbg, Icon, text }) {
+function SocialAuthButton() {
   return (
     <div>
       <button
         type="button"
-        className="h-fit w-full items-center rounded-md border text-[{colortext}] border-white  px-4 py-[10px]  bg-[{colorbg}] text-base font-semibold cursor-pointer  "
+        className="h-fit justify-center flex my-2  w-full items-center bg-[#19a7ff] hover:bg-[#4ab4f7]  rounded-md text-[#ffffff]   px-4 py-[10px]  text-base font-bold cursor-pointer  "
       >
-        <div className=" flex">
-          <FontAwesomeIcon icon={faFaceRelieved} />
-          <Icon className="h-6" /> {text}
-        </div>
+        <Image
+          src={Google}
+          width="25"
+          height="25"
+          alt="New Lofo"
+          className="mx-2 "
+        />
+        Continue with Facebook
+      </button>
+      <button
+        type="button"
+        className="h-fit justify-center flex my-2  w-full items-center rounded-md border text-[#3b3b3b] border-[#adadad] hover:bg-[#fffbfb] px-4 py-[10px]  text-base font-bold cursor-pointer  "
+      >
+        <Image
+          src={Google}
+          width="25"
+          height="25"
+          alt="New Lofo"
+          className="mx-2 "
+        />
+        Continue with Google
+      </button>
+      <button
+        type="button"
+        className="h-fit justify-center flex my-2 w-full items-center rounded-md bg-black hover:bg-[#2c2b2b] text-white  px-4 py-[10px]  text-base font-bold cursor-pointer  "
+      >
+        <Image
+          src={Google}
+          width="25"
+          height="25"
+          alt="New Lofo"
+          className="mx-2 "
+        />
+        Continue with Apple
       </button>
     </div>
   );
