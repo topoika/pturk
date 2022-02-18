@@ -1,17 +1,16 @@
 import Image from "next/image";
-import Plumbers from "./../../public/static/images/menu/one.svg";
-function HeaderCategoriesItem({ text }) {
+function HeaderCategoriesItem({ text, img }) {
   return (
-    <div className="flex">
+    <div className="flex mx-2 group">
       <Image
-        src={Plumbers}
+        src={img}
         alt={text}
-        height="20"
+        height="25"
         width="20"
         className="fill-white"
       />
 
-      <p className="text-white text-s font-bold px-5 pl-1.5 cursor-pointer  hover:animate-pulse">
+      <p className="text-white text-s font-bold mx-1 pl-1.5 cursor-pointer  group-hover:animate-pulse group-hover:underline">
         {text}
       </p>
     </div>

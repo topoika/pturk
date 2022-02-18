@@ -4,8 +4,35 @@ import Footer from "../components/home/Footer";
 import SocialAuthButton from "../components/home/simplecomponents/SocialAuthButton";
 import AuthHeader from "../components/universal/AuthHeader";
 import AuthImage from "./../public/static/images/auth_page.png";
+import Router from "next/router";
+import Constants from "./../components/constant";
 
 export default function Login() {
+  const logUserIn = async (event) => {
+    event.preventDefault();
+    try {
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: event.target.email.value,
+          password: event.target.password.value,
+        }),
+      };
+      const res = await fetch(Constants.BASE_URL + "/login", requestOptions)
+        .then((response) => response.json())
+        .then((data) => data.user);
+      if (res.length > 0) {
+        Router.push("/");
+      } else {
+        alert("You have enter wrong details");
+      }
+      console.log(res.length);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="flex  flex-col">
       <AuthHeader />
@@ -51,39 +78,46 @@ export default function Login() {
                 <div className="h-[1px] bg-black opacity-30 w-full" />
               </div>
               {/* Login form here */}
-              <div className="w-full my-2">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
-                />
-                <p className=" place-items-center text-right font-normal text-[#0073bb] hover:underline cursor-pointer  ml-2 text-sm ">
-                  Forgot Password
-                </p>
-                <button
-                  type="button"
-                  className="h-fit justify-center flex my-3  w-full items-center bg-[#E00707] hover:bg-[#ee5656]  rounded-sm text-[#ffffff]   px-4 py-[10px]  text-base font-bold cursor-pointer  "
-                >
-                  Log In
-                </button>
-                <div className="flex justify-end">
-                  <p className=" place-items-center text-right font-normal text-black opacity-50 ml-2 text-sm">
-                    New to Pturk?
+              <form onSubmit={logUserIn}>
+                <div className="w-full my-2">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    autoComplete="email"
+                    className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    autoComplete="password"
+                    className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
+                  />
+                  <p className=" place-items-center text-right font-normal text-[#0073bb] hover:underline cursor-pointer  ml-2 text-sm ">
+                    Forgot Password
                   </p>
-                  <Link href={"/signup"}>
-                    <a>
-                      <p className=" place-items-center text-right font-normal text-[#0073bb] hover:underline cursor-pointer  ml-[2px] text-sm ">
-                        Sign Up
-                      </p>
-                    </a>
-                  </Link>
+                  <button
+                    type="submit"
+                    className="h-fit justify-center flex my-3  w-full items-center bg-[#E00707] hover:bg-[#ee5656]  rounded-sm text-[#ffffff]   px-4 py-[10px]  text-base font-bold cursor-pointer  "
+                  >
+                    Log In
+                  </button>
+
+                  <div className="flex justify-end">
+                    <p className=" place-items-center text-right font-normal text-black opacity-50 ml-2 text-sm">
+                      New to Pturk?
+                    </p>
+                    <Link href={"/signup"}>
+                      <a>
+                        <p className=" place-items-center text-right font-normal text-[#0073bb] hover:underline cursor-pointer  ml-[2px] text-sm ">
+                          Sign Up
+                        </p>
+                      </a>
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
           <div className="flex justify-between">

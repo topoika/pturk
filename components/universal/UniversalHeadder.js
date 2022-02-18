@@ -4,6 +4,7 @@ import { SearchIcon, ArrowSmDownIcon } from "@heroicons/react/solid";
 import TopMenuItem from "../home/TopMenuItem";
 import Link from "next/link";
 import { route } from "next/dist/server/router";
+import UniversalHeaderMenuItem from "../home/simplecomponents/UniversalHeaderMenuItem";
 
 function UniversalHeadder({ props }) {
   return (
@@ -58,39 +59,35 @@ function UniversalHeadder({ props }) {
           >
             Write a Review
           </button>
-          <button
-            type="button"
-            className="h-fit items-center rounded-md border text-black opacity-80 border-black border-opacity-40  px-4 py-[7px] mx-2 bg-white text-base font-semibold cursor-pointer hover:bg-opacity-40 hover:bg-black "
-          >
-            Log In
-          </button>
-          <button
-            type="button"
-            className="h-fit items-center rounded-md border text-white border-white  px-4 py-[7px] mx-2 bg-[#E00707] text-base font-semibold cursor-pointer  "
-          >
-            Sign Up
-          </button>
+          <Link href={"/login"}>
+            <a>
+              <button
+                type="button"
+                className="h-fit items-center rounded-md border text-black opacity-80 border-black border-opacity-40  px-4 py-[7px] mx-2 bg-white text-base font-semibold cursor-pointer hover:bg-opacity-40 hover:bg-black "
+              >
+                Log In
+              </button>
+            </a>
+          </Link>
+          <Link href={"/login"}>
+            <a>
+              <button
+                type="button"
+                className="h-fit items-center rounded-md border text-white border-white  px-4 py-[7px] mx-2 bg-[#E00707] text-base font-semibold cursor-pointer  "
+              >
+                Sign Up
+              </button>
+            </a>
+          </Link>
         </div>
       </div>
       <div className="flex justify-between py-2">
         <div className="w-[375px]" />
         <ul className="flex flex-1">
-          <li className="mr-10 flex items-center">
-            <p className="text-base font-normal">Restaurants</p>
-            <ArrowSmDownIcon className="h-5" />
-          </li>
-          <li className="mr-10 flex items-center">
-            <p className="text-base font-normal">Home Services</p>
-            <ArrowSmDownIcon className="h-5" />
-          </li>
-          <li className="mr-10 flex items-center">
-            <p className="text-base font-normal">Auto Services</p>
-            <ArrowSmDownIcon className="h-5" />
-          </li>
-          <li className="mr-10 flex items-center">
-            <p className="text-base font-normal">More</p>
-            <ArrowSmDownIcon className="h-5" />
-          </li>
+          <UniversalHeaderMenuItem text={"Restaurants"} />
+          <UniversalHeaderMenuItem text={"Home Services"} />
+          <UniversalHeaderMenuItem text={"Auto Services"} />
+          <UniversalHeaderMenuItem text={"More"} />
         </ul>
         <div></div>
       </div>

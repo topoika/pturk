@@ -4,6 +4,11 @@ import logo from "./../../public/static/images/logo.svg";
 import { SearchIcon } from "@heroicons/react/solid";
 import HeaderCategoriesItem from "./HeaderCategoriesItem";
 import Link from "next/link";
+import Plumbers from "./../../public/static/images/menu/one.svg";
+import Restaurant from "./../../public/static/images/menu/two.svg";
+import HomeServices from "./../../public/static/images/menu/home.svg";
+import Delivery from "./../../public/static/images/menu/delivery.svg";
+import Love from "./../../public/static/images/menu/love.svg";
 
 function Header() {
   return (
@@ -64,11 +69,11 @@ function Header() {
           </div>
         </div>
         <div className="flex justify-center mt-5 mb-36 ">
-          <HeaderCategoriesItem text={"Plumbers"} />
-          <HeaderCategoriesItem text={"Restaurants"} />
-          <HeaderCategoriesItem text={"Home Service"} />
-          <HeaderCategoriesItem text={"Delivery"} />
-          <HeaderCategoriesItem text={"Black Owned"} />
+          <HeaderCategoriesItem text={"Plumbers"} img={Plumbers} />
+          <HeaderCategoriesItem text={"Restaurants"} img={Restaurant} />
+          <HeaderCategoriesItem text={"Home Service"} img={HomeServices} />
+          <HeaderCategoriesItem text={"Delivery"} img={Delivery} />
+          <HeaderCategoriesItem text={"Black Owned"} img={Love} />
         </div>
       </div>
     </div>

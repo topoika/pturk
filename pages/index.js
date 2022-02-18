@@ -6,6 +6,7 @@ import Header from "../components/home/Header";
 import HotAndNewBus from "../components/home/HotAndNewBus";
 import PturkForMobile from "../components/home/PturkForMobile";
 import RecentCollection from "../components/home/RecentCollection";
+import Constants from "./../components/constant";
 
 export default function Home(props) {
   return (
@@ -41,10 +42,10 @@ export default function Home(props) {
 }
 export async function getServerSideProps(context) {
   var featured_categories = await fetch(
-    "http://localhost:3001/api/featuredcategories"
+    Constants.BASE_URL + "/featuredcategories"
   ).then((res) => res.json());
   var random_sub_categories = await fetch(
-    "http://localhost:3001/api/randomsubcategories"
+    Constants.BASE_URL + "/randomsubcategories"
   ).then((res) => res.json());
   return {
     props: {
