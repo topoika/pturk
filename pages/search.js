@@ -9,13 +9,13 @@ export default function Search(props) {
     <div className="bg-white  ">
       <UniversalHeadder props={{ searchName: "Restaurants" }} />
       <div className="flex justify-between">
-        <div className="bg-green-600 w-2/6 flex flex-col">
+        <div className="w-2/6 flex flex-col">
           <Filters />
         </div>
-        <div className="bg-red-500  w-full  flex flex-col">
+        <div className="w-full py-5 px-4 flex flex-col">
           <Results />
         </div>
-        <div className="bg-yellow-600 w-9/12 flex flex-col">
+        <div className="w-9/12 flex flex-col">
           <Map />
         </div>
       </div>
