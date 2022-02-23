@@ -3,6 +3,7 @@ import Results from "../components/search/Results";
 import Map from "../components/search/Map";
 import UniversalHeadder from "../components/universal/UniversalHeadder";
 import Constants from "./../components/constant";
+import Cookies from "js-cookie";
 
 export default function Search(props) {
   return (
@@ -24,9 +25,12 @@ export default function Search(props) {
 }
 
 export async function getServerSideProps(context) {
+  console.log(Cookies.get("searchedCategory"));
   let subcategories = await fetch(
     Constants.BASE_URL +
-      `/subcategories/${context.query.id ? context.query.id : 1}`
+      `/subcategories/${
+        context.query.id ? context.query.id : Cookies.get("searchedCategory")
+      }`
   ).then((res) => res.json());
   return {
     props: {

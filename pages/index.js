@@ -7,6 +7,7 @@ import HotAndNewBus from "../components/home/HotAndNewBus";
 import PturkForMobile from "../components/home/PturkForMobile";
 import RecentCollection from "../components/home/RecentCollection";
 import Constants from "./../components/constant";
+import Cookies from "js-cookie";
 
 export default function Home(props) {
   return (
@@ -41,6 +42,9 @@ export default function Home(props) {
   );
 }
 export async function getServerSideProps(context) {
+  Cookies.set("location_name","Austin");
+  Cookies.set("location_lat","23.5433");
+  Cookies.set("location_log","-1.434343");
   var featured_categories = await fetch(
     Constants.BASE_URL + "/featuredcategories"
   ).then((res) => res.json());

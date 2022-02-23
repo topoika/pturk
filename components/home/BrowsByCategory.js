@@ -2,8 +2,12 @@ import BottomCategory from "./BottomCategory";
 import Link from "next/link";
 import Titles from "./simplecomponents/Titles";
 import OtherCate from "./../../public/static/images/categories/more.png";
+import Cookies from "js-cookie";
 
 function BrowsByCategory({ props }) {
+  const setCookies = (id) => {
+    Cookies.set("searchedCategory", id);
+  };
   return (
     <div className="w-full flex  justify-center flex-col items-center ">
       <Titles title={"Browse Businesses by Category"} />
@@ -18,9 +22,13 @@ function BrowsByCategory({ props }) {
                 title: res.name,
               },
             }}
-            as={`search`}
+            as={`search search?cflt=${res.name}&find_loc=${Cookies.get(
+              "location_name"
+            )}&log=${Cookies.get("location_log")}&lat=${Cookies.get(
+              "location_lat"
+            )}`}
           >
-            <a>
+            <a onClick={setCookies(res.id)}>
               <BottomCategory img={res.image} name={res.name} />
             </a>
           </Link>
