@@ -9,6 +9,7 @@ import RecentCollection from "../components/home/RecentCollection";
 import Constants from "./../components/constant";
 import { login } from "../redux/slices/userSlice";
 import nookies from "nookies";
+import { useDispatch } from "react-redux";
 
 export default function Home(props) {
   const dispatch = useDispatch();
