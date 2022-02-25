@@ -6,8 +6,12 @@ import AuthHeader from "../components/universal/AuthHeader";
 import AuthImage from "./../public/static/images/auth_page.png";
 import Router from "next/router";
 import Constants from "./../components/constant";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slices/userSlice";
+import Cookies from "js-cookie";
 
 export default function Login() {
+  const dispatch = useDispatch();
   const logUserIn = async (event) => {
     event.preventDefault();
     try {
@@ -23,6 +27,10 @@ export default function Login() {
         .then((response) => response.json())
         .then((data) => data.user);
       if (res.length > 0) {
+        let user = res[0];
+        dispatch(login(user));
+        Cookies.set("currentUser", JSON.stringify(user));
+        Cookies.set("session", "true");
         Router.push("/");
       } else {
         alert("You have enter wrong details");

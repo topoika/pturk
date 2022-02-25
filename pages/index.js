@@ -7,9 +7,13 @@ import HotAndNewBus from "../components/home/HotAndNewBus";
 import PturkForMobile from "../components/home/PturkForMobile";
 import RecentCollection from "../components/home/RecentCollection";
 import Constants from "./../components/constant";
-import Cookies from "js-cookie";
+import { login } from "../redux/slices/userSlice";
+import nookies from "nookies";
 
 export default function Home(props) {
+  const dispatch = useDispatch();
+  dispatch(login(props.user));
+
   return (
     <div>
       <Head>
@@ -41,10 +45,10 @@ export default function Home(props) {
     </div>
   );
 }
+
 export async function getServerSideProps(context) {
-  Cookies.set("location_name","Austin");
-  Cookies.set("location_lat","23.5433");
-  Cookies.set("location_log","-1.434343");
+  const cookie = nookies.get(context);
+  let currentUser = JSON.stringify(cookie["currentUser"]);
   var featured_categories = await fetch(
     Constants.BASE_URL + "/featuredcategories"
   ).then((res) => res.json());
@@ -55,6 +59,7 @@ export async function getServerSideProps(context) {
     props: {
       homecategories: featured_categories,
       randomsubcategories: random_sub_categories,
+      user: currentUser,
     },
   };
 }

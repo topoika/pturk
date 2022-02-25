@@ -22,11 +22,11 @@ function BrowsByCategory({ props }) {
                 title: res.name,
               },
             }}
-            as={`search search?cflt=${res.name}&find_loc=${Cookies.get(
-              "location_name"
-            )}&log=${Cookies.get("location_log")}&lat=${Cookies.get(
-              "location_lat"
-            )}`}
+            // as={`search search?cflt=${res.name}&find_loc=${Cookies.get(
+            //   "location_name"
+            // )}&log=${Cookies.get("location_log")}&lat=${Cookies.get(
+            //   "location_lat"
+            // )}`}
           >
             <a onClick={setCookies(res.id)}>
               <BottomCategory img={res.image} name={res.name} />

@@ -1,9 +1,9 @@
 import Filters from "../components/search/Filters";
 import Results from "../components/search/Results";
-import Map from "../components/search/Map";
 import UniversalHeadder from "../components/universal/UniversalHeadder";
 import Constants from "./../components/constant";
 import Cookies from "js-cookie";
+import MyMap from "../components/search/Map";
 
 export default function Search(props) {
   return (
@@ -17,7 +17,7 @@ export default function Search(props) {
           <Results />
         </div>
         <div className="w-9/12 flex flex-col">
-          <Map />
+          <MyMap />
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@ export default function Search(props) {
 }
 
 export async function getServerSideProps(context) {
-  console.log(Cookies.get("searchedCategory"));
+  // console.log(Cookies.get("searchedCategory"));
   let subcategories = await fetch(
     Constants.BASE_URL +
       `/subcategories/${
