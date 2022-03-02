@@ -29,7 +29,7 @@ export default function Login() {
       if (res.length > 0) {
         let user = res[0];
         dispatch(login(user));
-        Cookies.set("currentUser", JSON.stringify(user));
+        Cookies.set("session_token", user.api_token);
         Cookies.set("session", "true");
         Router.push("/");
       } else {

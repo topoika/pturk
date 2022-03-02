@@ -3,7 +3,7 @@ import Image from "next/image";
 import Constants from "../../constant";
 import Router from "next/router";
 
-function UpdateUserForm() {
+function UpdateUserForm({ currentUser }) {
   const updateUser = async (event) => {
     event.preventDefault();
     let _user = JSON.stringify({
@@ -80,7 +80,7 @@ function UpdateUserForm() {
                 placeholder="First Name"
                 name="first_name"
                 autoComplete="given-name"
-                defaultValue="Topoika"
+                defaultValue={currentUser.first_name ?? ""}
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
               <div className="w-[30px]" />
@@ -89,6 +89,7 @@ function UpdateUserForm() {
                 placeholder="Last Name"
                 name="last_name"
                 autoComplete="family-name"
+                defaultValue={currentUser.last_name ?? ""}
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
             </div>
@@ -98,6 +99,7 @@ function UpdateUserForm() {
                 placeholder="someone@domain.com"
                 name="email"
                 autoComplete="email"
+                defaultValue={currentUser.email ?? ""}
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
               <div className="w-[30px]" />
@@ -106,6 +108,7 @@ function UpdateUserForm() {
                 placeholder="+00-12345-67890"
                 name="phone"
                 autoComplete="tel"
+                defaultValue={currentUser.phone ?? ""}
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
             </div>
@@ -115,6 +118,7 @@ function UpdateUserForm() {
                 placeholder="Your Address (1st line)"
                 name="address"
                 autoComplete="address-line1"
+                defaultValue={currentUser.address ?? ""}
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
               <div className="w-[30px]" />
@@ -123,6 +127,7 @@ function UpdateUserForm() {
                 placeholder="Your Address (2nd line)"
                 name="address_2"
                 autoComplete="address-line2"
+                defaultValue={currentUser.address_2 ?? ""}
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
             </div>
@@ -132,6 +137,7 @@ function UpdateUserForm() {
                 placeholder="Your City"
                 name="city"
                 autoComplete="home city"
+                defaultValue={currentUser.city ?? ""}
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
               <div className="w-[30px]" />
@@ -140,6 +146,7 @@ function UpdateUserForm() {
                 placeholder="Zip Code"
                 name="zipcode"
                 autoComplete="postal-code"
+                defaultValue={currentUser.zipcode ?? ""}
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
               <div className="w-[30px]" />
@@ -148,6 +155,7 @@ function UpdateUserForm() {
                 placeholder="State"
                 name="state"
                 autoComplete="home state"
+                defaultValue={currentUser.state ?? ""}
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
               <div className="w-[30px]" />
@@ -156,6 +164,7 @@ function UpdateUserForm() {
                 placeholder="Country"
                 name="country"
                 autoComplete="country-name"
+                defaultValue={currentUser.country ?? ""}
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
             </div>
@@ -165,12 +174,14 @@ function UpdateUserForm() {
               placeholder="Write about youself"
               name="about"
               autoComplete="nickname"
+              defaultValue={currentUser.about ?? ""}
               className="w-full px-2 py-2 my-4 border outline-[2px] rounded-sm"
             />
             <div className="flex my-4">
               <input
                 type="text"
                 placeholder="Enter facebook profile url"
+                defaultValue={currentUser.facebook_url ?? ""}
                 name="facebook_url"
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
@@ -178,6 +189,7 @@ function UpdateUserForm() {
               <input
                 type="text"
                 placeholder="Enter twitter profile url"
+                defaultValue={currentUser.twitter_url ?? ""}
                 name="twitter_url"
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
@@ -186,6 +198,7 @@ function UpdateUserForm() {
               <input
                 type="text"
                 placeholder="Enter linkedin profile url"
+                defaultValue={currentUser.linkedin_url ?? ""}
                 name="linkedin_url"
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
@@ -193,6 +206,7 @@ function UpdateUserForm() {
               <input
                 type="text"
                 placeholder="Enter instagram profile url"
+                defaultValue={currentUser.instagram_url ?? ""}
                 name="instagram_url"
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
@@ -202,6 +216,7 @@ function UpdateUserForm() {
                 type="text"
                 placeholder="Enter pinterest profile url"
                 name="pinterest_url"
+                defaultValue={currentUser.pinterest_url ?? ""}
                 className="w-full px-2 py-2 mb-2 border outline-[2px] rounded-sm"
               />
               <div className="w-[30px]" />
