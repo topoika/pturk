@@ -7,14 +7,13 @@ import HotAndNewBus from "../components/home/HotAndNewBus";
 import PturkForMobile from "../components/home/PturkForMobile";
 import RecentCollection from "../components/home/RecentCollection";
 import Constants from "./../components/constant";
-import { login } from "../redux/slices/userSlice";
+import { login, logout } from "../redux/slices/userSlice";
 import nookies from "nookies";
 import { useDispatch } from "react-redux";
 
 export default function Home(props) {
   const dispatch = useDispatch();
-  console.log(props.user);
-  dispatch(login(props.user[0]));
+  props.user != null ? dispatch(login(props.user[0])) : logout();
 
   return (
     <div>
@@ -51,17 +50,16 @@ export default function Home(props) {
 export async function getServerSideProps(context) {
   const cookie = nookies.get(context);
   let token = JSON.stringify(cookie["session_token"]);
-  console.log(token);
   const requestOptions = {
     method: "GET",
     headers: { "Content-Type": "application/json", token: token },
   };
-  var currentUser = await fetch(
-    Constants.BASE_URL + "/getuserinfo",
-    requestOptions
-  )
-    .then((response) => response.json())
-    .then((data) => data.user);
+  var currentUser =
+    token != undefined
+      ? await fetch(Constants.BASE_URL + "/getuserinfo", requestOptions)
+          .then((response) => response.json())
+          .then((data) => data.user)
+      : null;
   var featured_categories = await fetch(
     Constants.BASE_URL + "/featuredcategories"
   ).then((res) => res.json());

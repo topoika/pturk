@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import "leaflet/dist/leaflet.css";
 import { Provider } from "react-redux";
 import { store } from "../redux/store/store";
 function MyApp({ Component, pageProps }) {

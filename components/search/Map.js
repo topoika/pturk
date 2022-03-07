@@ -1,47 +1,66 @@
-import React from "react";
-import withStyles from "isomorphic-style-loader/lib/withStyles";
-import leafletCss from "!isomorphic-style-loader!css-loader?modules=false!leaflet/dist/leaflet.css"; //if use isomorphic-style-loader
-import s from "./GenerateMap.css";
-
-let RL = false;
-let Map = false;
-let TileLayer = false;
-let Marker = false;
-let Popup = false;
-if (process.env.BROWSER) {
-  RL = require("react-leaflet");
-  Map = RL.Map;
-  TileLayer = RL.TileLayer;
-  Marker = RL.Marker;
-  Popup = RL.Popup;
-}
-
+import { LocationMarkerIcon } from "@heroicons/react/solid";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  InfoBox,
+  InfoWindow,
+} from "@react-google-maps/api";
 function MyMap() {
-  const position = [51.505, -0.09];
+  const containerStyle = {
+    width: "100%",
+    height: "90vh",
+  };
 
-  return (
-    <div className={s.root}>
-      {process.env.BROWSER && (
-        <Map
-          style={{ width: "100%", height: "500px" }}
-          center={position}
-          zoom={13}
+  const center = {
+    lat: 41.2797,
+    lng: 36.3361,
+  };
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
+  });
+
+  const markers = [
+    {
+      id: 1,
+      lat: 41.2797,
+      lng: 36.3361,
+    },
+    {
+      id: 2,
+      lat: 41.23,
+      lng: 34.3361,
+    },
+    {
+      id: 3,
+      lat: 40.23,
+      lng: 34.3361,
+    },
+    {
+      id: 4,
+      lat: 43.23,
+      lng: 34.3361,
+    },
+  ];
+  return isLoaded ? (
+    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={14}>
+      {markers.map((_marker) => (
+        <Marker
+          key={_marker.id}
+          position={{ lat: _marker.lat, lng: _marker.lng }}
+          animation="drop"
+          icon={LocationMarkerIcon}
         >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          />
-          <Marker position={position} icon="">
-            <Popup>
-              A pretty CSS3 popup.
-              <br />
-              Easily customizable.
-            </Popup>
-          </Marker>
-        </Map>
-      )}
-    </div>
+          <InfoWindow position={center}>
+            <p>{_marker.lat}</p>
+          </InfoWindow>
+        </Marker>
+      ))}
+    </GoogleMap>
+  ) : (
+    <></>
   );
 }
 
-export default withStyles(s, leafletCss)(MyMap);
+export default MyMap;
