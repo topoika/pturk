@@ -6,10 +6,14 @@ import {
   InfoBox,
   InfoWindow,
 } from "@react-google-maps/api";
+import Image from "next/image";
+import StarImageActive from "../../public/static/images/map/star.svg";
+import StarImage from "../../public/static/images/map/star1.svg";
 function MyMap() {
   const containerStyle = {
     width: "100%",
     height: "90vh",
+    position: "relative",
   };
 
   const center = {
@@ -43,18 +47,24 @@ function MyMap() {
       lng: 34.3361,
     },
   ];
+  function mouseOver() {
+    console.log("New");
+  }
   return isLoaded ? (
     <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={14}>
       {markers.map((_marker) => (
         <Marker
           key={_marker.id}
           position={{ lat: _marker.lat, lng: _marker.lng }}
-          animation="drop"
           icon={LocationMarkerIcon}
         >
-          <InfoWindow position={center}>
-            <p>{_marker.lat}</p>
-          </InfoWindow>
+          <Image
+            src={StarImage}
+            height="35"
+            width="37"
+            alt="New one"
+            className="absolute top-3 text-center"
+          />
         </Marker>
       ))}
     </GoogleMap>
