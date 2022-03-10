@@ -1,14 +1,5 @@
 import { LocationMarkerIcon } from "@heroicons/react/solid";
-import {
-  GoogleMap,
-  useJsApiLoader,
-  Marker,
-  InfoBox,
-  InfoWindow,
-} from "@react-google-maps/api";
-import Image from "next/image";
-import StarImageActive from "../../public/static/images/map/star.svg";
-import StarImage from "../../public/static/images/map/star1.svg";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 function MyMap({ data }) {
   const containerStyle = {
     width: "100%",
@@ -25,7 +16,6 @@ function MyMap({ data }) {
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
   });
 
-  console.log(data);
   return isLoaded ? (
     <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={5}>
       {data.map((_listing) => (

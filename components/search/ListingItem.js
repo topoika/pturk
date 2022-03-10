@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import ItemAttributes from "./simpleComponents/ItemAttributes";
 
 function ListingItem({ listing }) {
-  const tags = ["American(New)", "Food Delivery Services", "Accai Bowls"];
+  const tags = listing.tags.split(",");
   let images = listing.images.split(",");
   const [activeImage, setActiveImage] = useState(0);
   const [image, setimage] = useState(images[activeImage]);
@@ -25,7 +25,7 @@ function ListingItem({ listing }) {
   }
   return (
     <div>
-      <div className="flex justify-start p-4 border mb-7 shadow-md rounded-md border-opacity-40 w-full hover:shadow-2xl cursor-pointer">
+      <div className="flex justify-start p-4 border mb-7 shadow-md rounded-md border-opacity-40 w-full hover:shadow-xl cursor-pointer">
         <div className="w-6/12 rounded-md bg-black relative">
           <Image
             src={image}

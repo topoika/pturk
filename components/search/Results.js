@@ -51,7 +51,7 @@ function Results({ data }) {
         </p>
         <InformationCircleIcon className="h-5 ml-1 stroke-black fill-transparent opacity-80" />
       </div>
-      {data.data.map((listing) => (
+      {data.sponsored.map((listing) => (
         <ListingItem key={listing.id} listing={listing} />
       ))}
       <p className="text-black font-bold text-[17px] mt-4 mb-6 opacity-80">
