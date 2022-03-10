@@ -8,20 +8,20 @@ import Footer from "../components/home/Footer";
 
 export default function Search(props) {
   return (
-    <div className="bg-white relative">
+    <div className="bg-white ">
       <UniversalHeadder props={{ searchName: "Restaurants" }} />
       <div className="flex justify-between relative top-[14vh]">
         <div className="w-3/12 flex flex-col">
           <Filters />
         </div>
-        <div className="w-full py-5 pr-8 pl-5  flex flex-col">
+        <div className="w-full py-5 pr-8 pl-5  flex flex-col touch-pan-y">
           <Results data={props.listings} />
         </div>
         <div className="w-8/12 flex flex-col">
           <MyMap data={props.listings.data} />
         </div>
       </div>
-      <div className=" h-fit bg-gray-300 flex  py-9 justify-center relative">
+      <div className="mt-32 bg-gray-300 flex justify-center relative  bottom-0">
         <Footer />
       </div>
     </div>

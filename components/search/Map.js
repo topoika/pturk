@@ -3,7 +3,7 @@ import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 function MyMap({ data }) {
   const containerStyle = {
     width: "100%",
-    height: "90vh",
+    height: "85vh",
     position: "fixed",
   };
 
@@ -17,7 +17,12 @@ function MyMap({ data }) {
   });
 
   return isLoaded ? (
-    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={5}>
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      className="fixed"
+      center={center}
+      zoom={5}
+    >
       {data.map((_listing) => (
         <Marker
           key={_listing.id}
