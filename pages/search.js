@@ -7,14 +7,10 @@ import MyMap from "../components/search/Map";
 import Footer from "../components/home/Footer";
 
 export default function Search(props) {
-  console.log(props.subcategories);
   return (
-    <div className="bg-white">
-      <UniversalHeadder
-        className="fixed top-0 "
-        props={{ searchName: "Restaurants" }}
-      />
-      <div className="flex justify-between">
+    <div className="bg-white relative">
+      <UniversalHeadder props={{ searchName: "Restaurants" }} />
+      <div className="flex justify-between relative top-[14vh]">
         <div className="w-3/12 flex flex-col">
           <Filters />
         </div>
@@ -25,7 +21,7 @@ export default function Search(props) {
           <MyMap data={props.listings.data} />
         </div>
       </div>
-      <div className=" h-fit bg-gray-300 flex  py-9 justify-center">
+      <div className=" h-fit bg-gray-300 flex  py-9 justify-center relative">
         <Footer />
       </div>
     </div>

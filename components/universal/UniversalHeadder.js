@@ -8,7 +8,7 @@ import UniversalHeaderMenuItem from "../home/simplecomponents/UniversalHeaderMen
 
 function UniversalHeadder({ props }) {
   return (
-    <div className="flex flex-col sticky h-fit border-b-[1px] px-10 py-5">
+    <div className="flex flex-col fixed w-full  bg-white z-10 h-fit border-b-[1px] px-10 py-5">
       <div className="flex justify-between items-center ">
         <Link href={"/"}>
           <a>

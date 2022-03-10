@@ -1,21 +1,58 @@
-import { ChatAltIcon, StarIcon } from "@heroicons/react/outline";
+import { ChatAltIcon } from "@heroicons/react/outline";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import Rating from "../universal/Rating";
-import Recent from "./../../public/static/images/ls.jpg";
+import React, { useState } from "react";
+
 import ItemAttributes from "./simpleComponents/ItemAttributes";
 
 function ListingItem({ listing }) {
   const tags = ["American(New)", "Food Delivery Services", "Accai Bowls"];
+  let images = listing.images.split(",");
+  const [activeImage, setActiveImage] = useState(0);
+  const [image, setimage] = useState(images[activeImage]);
+  function increament() {
+    if (activeImage < images.length - 1) {
+      setActiveImage(() => activeImage + 1);
+      setimage(() => images[activeImage]);
+    }
+  }
+  function decrement() {
+    if (activeImage > 0) {
+      setActiveImage(() => activeImage - 1);
+      setimage(() => images[activeImage]);
+    }
+  }
   return (
     <div>
       <div className="flex justify-start p-4 border mb-7 shadow-md rounded-md border-opacity-40 w-full hover:shadow-2xl cursor-pointer">
         <div className="w-6/12 rounded-md bg-black relative">
           <Image
-            src={listing.image}
+            src={image}
             alt="New listing"
             layout="fill"
             className="object-fill rounded-md"
           />
+          <div className="absolute left-0 top-1/2  rounded-2xl bg-slate-50 opacity-85 mr-[2px] ">
+            <ChevronLeftIcon
+              onClick={decrement}
+              className={
+                activeImage == 0
+                  ? "h-6 text-black opacity-60 "
+                  : "h-6 opacity-100 cursor-pointer"
+              }
+            />
+          </div>
+          <div className="absolute right-0 top-1/2  rounded-2xl bg-slate-50 opacity-85 mr-[2px] ">
+            <ChevronRightIcon
+              onClick={increament}
+              className={
+                activeImage == images.length - 1
+                  ? "h-6 text-black opacity-60 "
+                  : "h-6 opacity-100 cursor-pointer"
+              }
+            />
+          </div>
         </div>
         <div className="flex flex-col pr-7 pl-5">
           <p className="text-black font-bold text-xl opacity-90 hover:underline">

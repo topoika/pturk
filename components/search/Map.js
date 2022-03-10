@@ -13,7 +13,7 @@ function MyMap({ data }) {
   const containerStyle = {
     width: "100%",
     height: "90vh",
-    position: "relative",
+    position: "fixed",
   };
 
   const center = {
