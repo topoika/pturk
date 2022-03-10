@@ -58,13 +58,13 @@ function MyMap() {
           position={{ lat: _marker.lat, lng: _marker.lng }}
           icon={LocationMarkerIcon}
         >
-          <Image
+          {/* <Image
             src={StarImage}
             height="35"
             width="37"
             alt="New one"
             className="absolute top-3 text-center"
-          />
+          /> */}
         </Marker>
       ))}
     </GoogleMap>

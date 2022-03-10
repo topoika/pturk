@@ -13,7 +13,7 @@ export default function Search(props) {
         <div className="w-2/6 flex flex-col">
           <Filters />
         </div>
-        <div className="w-full py-5 px-4 flex flex-col">
+        <div className="w-full py-5 pr-8 pl-5 flex flex-col">
           <Results />
         </div>
         <div className="w-9/12 flex flex-col">
