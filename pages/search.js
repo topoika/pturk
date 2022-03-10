@@ -4,21 +4,29 @@ import UniversalHeadder from "../components/universal/UniversalHeadder";
 import Constants from "./../components/constant";
 import Cookies from "js-cookie";
 import MyMap from "../components/search/Map";
+import Footer from "../components/home/Footer";
 
 export default function Search(props) {
+  console.log(props.subcategories);
   return (
-    <div className="bg-white  ">
-      <UniversalHeadder props={{ searchName: "Restaurants" }} />
+    <div className="bg-white">
+      <UniversalHeadder
+        className="fixed top-0 "
+        props={{ searchName: "Restaurants" }}
+      />
       <div className="flex justify-between">
-        <div className="w-2/6 flex flex-col">
+        <div className="w-3/12 flex flex-col">
           <Filters />
         </div>
-        <div className="w-full py-5 pr-8 pl-5 flex flex-col">
-          <Results />
+        <div className="w-full py-5 pr-8 pl-5  flex flex-col">
+          <Results data={props.listings} />
         </div>
-        <div className="w-9/12 flex flex-col">
-          <MyMap />
+        <div className="w-8/12 flex flex-col">
+          <MyMap data={props.listings.data} />
         </div>
+      </div>
+      <div className=" h-fit bg-gray-300 flex  py-9 justify-center">
+        <Footer />
       </div>
     </div>
   );
@@ -32,9 +40,16 @@ export async function getServerSideProps(context) {
         context.query.id ? context.query.id : Cookies.get("searchedCategory")
       }`
   ).then((res) => res.json());
+  let listings = await fetch(
+    Constants.BASE_URL +
+      `/listings/${
+        context.query.id ? context.query.id : Cookies.get("searchedCategory")
+      }`
+  ).then((res) => res.json());
   return {
     props: {
       subcategories: subcategories,
+      listings: listings,
     },
   };
 }

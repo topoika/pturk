@@ -1,7 +1,8 @@
+import { InformationCircleIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import ListingItem from "./ListingItem";
 
-function Results() {
+function Results({ data }) {
   return (
     <div>
       <p className="text-sm text-black opacity-80 font-medium">
@@ -44,10 +45,21 @@ function Results() {
           />
         </div>
       </div>
-      <p className="text-black font-bold text-[17px] mt-3 mb-8 opacity-80">
-        Sponsored Results ℹ
+      <div className="flex items-center mt-3 mb-7">
+        <p className="text-black font-bold text-[17px]  opacity-80">
+          Sponsored Results
+        </p>
+        <InformationCircleIcon className="h-5 ml-1 stroke-black fill-transparent opacity-80" />
+      </div>
+      {data.data.map((listing) => (
+        <ListingItem key={listing.id} listing={listing} />
+      ))}
+      <p className="text-black font-bold text-[17px] mt-4 mb-6 opacity-80">
+        All Results
       </p>
-      <ListingItem />
+      {data.data.map((listing) => (
+        <ListingItem key={listing.id} listing={listing} />
+      ))}
     </div>
   );
 }

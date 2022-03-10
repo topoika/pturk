@@ -9,7 +9,7 @@ import {
 import Image from "next/image";
 import StarImageActive from "../../public/static/images/map/star.svg";
 import StarImage from "../../public/static/images/map/star1.svg";
-function MyMap() {
+function MyMap({ data }) {
   const containerStyle = {
     width: "100%",
     height: "90vh",
@@ -25,47 +25,14 @@ function MyMap() {
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
   });
 
-  const markers = [
-    {
-      id: 1,
-      lat: 41.2797,
-      lng: 36.3361,
-    },
-    {
-      id: 2,
-      lat: 41.23,
-      lng: 34.3361,
-    },
-    {
-      id: 3,
-      lat: 40.23,
-      lng: 34.3361,
-    },
-    {
-      id: 4,
-      lat: 43.23,
-      lng: 34.3361,
-    },
-  ];
-  function mouseOver() {
-    console.log("New");
-  }
+  console.log(data);
   return isLoaded ? (
-    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={14}>
-      {markers.map((_marker) => (
+    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={5}>
+      {data.map((_listing) => (
         <Marker
-          key={_marker.id}
-          position={{ lat: _marker.lat, lng: _marker.lng }}
-          icon={LocationMarkerIcon}
-        >
-          {/* <Image
-            src={StarImage}
-            height="35"
-            width="37"
-            alt="New one"
-            className="absolute top-3 text-center"
-          /> */}
-        </Marker>
+          key={_listing.id}
+          position={{ lat: _listing.latitude, lng: _listing.longitude }}
+        ></Marker>
       ))}
     </GoogleMap>
   ) : (
