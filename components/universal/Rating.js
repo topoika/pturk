@@ -1,6 +1,6 @@
 import { StarIcon } from "@heroicons/react/outline";
 
-function Rating({ rat }) {
+function Rating({ rat, small }) {
   return (
     <div className="flex items-center">
       {[1, 2, 3, 4, 5].map((rating) => (
@@ -9,7 +9,7 @@ function Rating({ rat }) {
           className={
             rat >= rating
               ? rat == 0
-                ? "bg-gray-400 rounded-md items-center mr-1"
+                ? "bg-gray-400 rounded-md items-center mr-1 opacity-40"
                 : rat == 1
                 ? "bg-[#c96e44] rounded-md items-center mr-1"
                 : rat == 2
@@ -19,10 +19,16 @@ function Rating({ rat }) {
                 : rat == 4
                 ? "bg-[#FF523D] rounded-md items-center mr-1"
                 : "bg-[#E00707] rounded-md items-center mr-1"
-              : "bg-gray-400 rounded-md items-center mr-1"
+              : "bg-gray-400 rounded-md items-center mr-1 opacity-60"
           }
         >
-          <StarIcon className="h-6 fill-white stroke-transparent " />
+          <StarIcon
+            className={
+              small
+                ? "h-6 fill-white stroke-transparent "
+                : "h-8 fill-white stroke-transparent "
+            }
+          />
         </div>
       ))}
     </div>

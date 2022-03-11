@@ -3,7 +3,7 @@ module.exports = {
   images: {
     domains: [
       "s3-media0.fl.yelpcdn.com",
-      "localhost:3001",
+      "http://localhost:3001/api",
       "images.unsplash.com",
     ],
   },

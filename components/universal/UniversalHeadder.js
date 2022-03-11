@@ -1,12 +1,11 @@
 import Image from "next/image";
 import logo from "./../../public/static/images/logo.png";
-import { SearchIcon, ArrowSmDownIcon } from "@heroicons/react/solid";
-import TopMenuItem from "../home/TopMenuItem";
+import { SearchIcon } from "@heroicons/react/solid";
 import Link from "next/link";
-import { route } from "next/dist/server/router";
 import UniversalHeaderMenuItem from "../home/simplecomponents/UniversalHeaderMenuItem";
 
 function UniversalHeadder({ props }) {
+  
   return (
     <div className="flex flex-col fixed w-full  bg-white z-10 h-fit border-b-[1px] px-10 py-5">
       <div className="flex justify-between items-center ">

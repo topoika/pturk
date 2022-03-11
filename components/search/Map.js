@@ -1,4 +1,3 @@
-import { LocationMarkerIcon } from "@heroicons/react/solid";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 function MyMap({ data }) {
   const containerStyle = {

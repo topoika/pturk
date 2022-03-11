@@ -52,13 +52,21 @@ function Results({ data }) {
         <InformationCircleIcon className="h-5 ml-1 stroke-black fill-transparent opacity-80" />
       </div>
       {data.sponsored.map((listing) => (
-        <ListingItem key={listing.id} listing={listing} />
+        <ListingItem
+          key={listing.id}
+          listing={listing}
+          index={data.sponsored.indexOf(listing) + 1}
+        />
       ))}
       <p className="text-black font-bold text-[17px] mt-4 mb-6 opacity-80">
         All Results
       </p>
       {data.data.map((listing) => (
-        <ListingItem key={listing.id} listing={listing} />
+        <ListingItem
+          key={listing.id}
+          listing={listing}
+          index={data.data.indexOf(listing) + 1}
+        />
       ))}
     </div>
   );
