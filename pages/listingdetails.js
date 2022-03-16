@@ -1,8 +1,15 @@
 import {
+  ArchiveIcon,
+  BookmarkIcon,
+  CameraIcon,
   CheckIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  ExternalLinkIcon,
   InformationCircleIcon,
+  ShareIcon,
+  StarIcon,
+  TruckIcon,
 } from "@heroicons/react/outline";
 import Cookies from "js-cookie";
 import Image from "next/image";
@@ -10,12 +17,32 @@ import UniversalHeadder from "../components/universal/UniversalHeadder";
 import { useState } from "react";
 import Title2 from "../components/universal/Title2";
 import Rating from "../components/universal/Rating";
+import Title3 from "../components/universal/Title3";
+import TopButton from "../components/detailspage/TopButton";
+import AmenitiesItem from "../components/detailspage/AmenitiesItem";
+import ReviewItem from "../components/detailspage/ReviewItem";
 
 export default function ListingDetails(props) {
   const listing = props.listing.data[0];
   let images = listing.images.split(",");
   const [activeImages, setactiveImages] = useState(images.slice(0, 4));
+  const [amenities, setamenities] = useState([1, 2, 3, 4]);
+  const [desc, setdesc] = useState(true);
   const [addedImage, setAddedImage] = useState(1);
+  function toggleAmenities() {
+    if (amenities.length == 4) {
+      setamenities(() => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+    } else {
+      setamenities(() => [1, 2, 3, 4]);
+    }
+  }
+  function toggleDesc() {
+    if (desc) {
+      setdesc(() => false);
+    } else {
+      setdesc(() => true);
+    }
+  }
   function increament() {
     if (addedImage + 4 < images.length) {
       console.log(addedImage);
@@ -24,6 +51,7 @@ export default function ListingDetails(props) {
       console.log(addedImage);
     }
   }
+  let foods = [1, 2, 3, 4];
   function decrement() {
     if (addedImage > 0) {
       setAddedImage(() => addedImage - 1);
@@ -32,6 +60,10 @@ export default function ListingDetails(props) {
       console.log(addedImage);
     }
   }
+  const createMarkUp = (text) => {
+    return { __html: text };
+  };
+
   return (
     <div>
       <UniversalHeadder props={{ searchName: listing.name }} />
@@ -111,8 +143,116 @@ export default function ListingDetails(props) {
             </div>
           </div>
         </div>
-        <div className="h-[2000px] bg-black w-full absolute  top-[40vh]">
-          <p>This is the body</p>
+        <div className="flex flex-col h-fit absolute justify-center max-w-6xl py-5 w-9/12  top-[40vh]">
+          <div className=" flex w-full h-fit rounded-md border justify-start items-center shadow-md mb-7">
+            <div className="h-16 w-2 bg-[#1F8EFF] rounded-tl-md rounded-bl-md " />
+            <InformationCircleIcon className="text-[#1F8EFF] h-7 w-7 mx-5" />
+            <div className="flex items-center justify-center">
+              <Title3 text={"Special hours today:"} />
+              <p className="text-lg ml-1">6:00 AM - 2:00 PM</p>
+            </div>
+          </div>
+          {/* Top with the sidebar */}
+          <div className="w-full flex justify-between  ">
+            <div className="w-full mr-6">
+              <div className="flex mb-6 mt-2">
+                <div className="flex justify-center py-3 px-7 mr-4 bg-[#F40D15] w-fit items-center rounded-md cursor-pointer">
+                  <StarIcon className="h-6 w-6 fill-transparent stroke-white" />
+                  <p className="text-white text-lg font-semibold ml-2">
+                    Write a review
+                  </p>
+                </div>
+                <TopButton Icon={CameraIcon} text="Add Photo" />
+                <TopButton Icon={ShareIcon} text="Share" />
+                <TopButton Icon={BookmarkIcon} text="Save" />
+              </div>
+              <div className="h-[1px] bg-black opacity-30 mb-7 w-full" />
+              <Title2 text={"Menu"} />
+              <div className="flex justify-between items-center pt-2">
+                <Title3 text={"Most mentioned dishes"} />
+                <div className="flex justify-center items-center cursor-pointer">
+                  <Title3 text={"View full menu"} />
+                  <ChevronRightIcon className="h-4 w-4 ml-2 align-baseline text-black opacity-80" />
+                </div>
+              </div>
+              <div className="overflow-hidden grid grid-cols-4 gap-12">
+                {foods.map((one) => (
+                  <div
+                    key={one}
+                    className="h-[200px] w-[200px] flex flex-col relative rounded-md my-4"
+                  >
+                    <div className="w-full h-4/5 relative">
+                      <Image
+                        src={activeImages[one - 1]}
+                        alt="New Meal"
+                        layout="fill"
+                        className="rounded-md"
+                      />
+                    </div>
+                    <p className="font-bold text-black text-[15px] opacity-80 line-clamp-1 overflow-ellipsis ml-1">
+                      Jalapeno sdfkj fdj fdsoi sf sdfdsf sdfsdf
+                    </p>
+                    <p className="ml-1">{"3 Photos • 2 Reviews"}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex my-4">
+                <TopButton Icon={ExternalLinkIcon} text="Website menu" />
+                <TopButton Icon={ArchiveIcon} text="Full menu" />
+              </div>
+
+              <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
+              <Title2 text={"Location & Hours"} />
+              <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
+              <Title2 text={"Amenities and More"} />
+              <div className="grid grid-cols-2">
+                {amenities.map((one) => (
+                  <AmenitiesItem key={one} text={"Offers Delivery"} value={0} />
+                ))}
+              </div>
+              <div
+                onClick={toggleAmenities}
+                className="py-2 w-fit mt-6 px-6 items-center border border-black border-opacity-70 rounded-md cursor-pointer hover:bg-[#E2E2E2]"
+              >
+                <p className="text-base font-semibold">
+                  {amenities.length == 4 ? "12 More Attributes" : "Show Less"}
+                </p>
+              </div>
+              <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
+              <Title2 text={"About the Business"} />
+              <p
+                dangerouslySetInnerHTML={createMarkUp(
+                  desc
+                    ? listing.description.substring(350, 0) + "..."
+                    : listing.description
+                )}
+                className="text-base text-black font-[400]"
+              />
+              <div
+                onClick={toggleDesc}
+                className="py-2 w-fit mt-6 px-6 items-center border border-black border-opacity-70 rounded-md cursor-pointer hover:bg-[#E2E2E2]"
+              >
+                <p className="text-base font-semibold">
+                  {desc ? "Show More" : "Show Less"}
+                </p>
+              </div>
+              <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
+              <Title2 text={"Recommended Reviews"} />
+              <ReviewItem />
+            </div>
+            <div className="w-2/5">
+              <div className="border border-opacity-70 rounded-md p-4">
+                <p>Promotion box</p>
+                <Title2 text={"10% off on Online Ordering"} />
+              </div>
+              <div>
+                <p>Info Box</p>
+              </div>
+              <div>
+                <p>more promo Box</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
