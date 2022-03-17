@@ -1,13 +1,21 @@
 import {
   ArchiveIcon,
   BookmarkIcon,
+  CalendarIcon,
   CameraIcon,
+  ChatIcon,
   CheckIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  CubeTransparentIcon,
+  DotsHorizontalIcon,
   ExternalLinkIcon,
   InformationCircleIcon,
+  PhoneIcon,
+  PlusIcon,
+  SearchIcon,
   ShareIcon,
+  ShoppingBagIcon,
   StarIcon,
   TruckIcon,
 } from "@heroicons/react/outline";
@@ -22,6 +30,8 @@ import TopButton from "../components/detailspage/TopButton";
 import AmenitiesItem from "../components/detailspage/AmenitiesItem";
 import ReviewItem from "../components/detailspage/ReviewItem";
 import LocationAndHours from "../components/detailspage/LocationAndHours";
+import MenuItem from "../components/detailspage/MenuItem";
+import Footer from "../components/home/Footer";
 
 export default function ListingDetails(props) {
   const listing = props.listing.data[0];
@@ -239,6 +249,21 @@ export default function ListingDetails(props) {
                   {desc ? "Show More" : "Show Less"}
                 </p>
               </div>
+              {/* Ask the community */}
+              <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
+              <div className="flex justify-between items-center pt-3">
+                <Title3 text={"Ask the Community"} />
+                <div className="flex justify-center items-center cursor-pointer">
+                  <Title3 text={"Ask a question"} />
+                  <PlusIcon className="h-4 w-4 ml-2 align-baseline text-black opacity-80" />
+                </div>
+              </div>
+              <p className="text-[16px] mt-5">
+                Yelp users haven’t asked any questions yet about{" "}
+                <span className="text-[16px] font-semibold">
+                  {listing.name}
+                </span>
+              </p>
               {/* Reviews reconmentation */}
               <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
               <Title2 text={"Recommended Reviews"} />
@@ -285,16 +310,56 @@ export default function ListingDetails(props) {
             </div>
 
             {/* Second container */}
-            <div className="w-2/5">
+            <div className="w-2/6">
               <div className="border border-opacity-70 rounded-md p-4">
-                <p>Promotion box</p>
                 <Title2 text={"10% off on Online Ordering"} />
+                <div className="text-center w-full h-fit rounded-md bg-[#F40D15] py-2 my-2">
+                  <p className="text-white font-bold text-lg">Order Now</p>
+                </div>
               </div>
-              <div>
-                <p>Info Box</p>
-              </div>
-              <div>
-                <p>more promo Box</p>
+              <div className="border border-opacity-70 rounded-md p-4 my-8">
+                <div className="flex justify-between items-center cursor-pointer">
+                  <div className="flex flex-col w-4/5">
+                    <p className="text-lg font-bold text-[#057C98] line-clamp-1">
+                      {listing.website}
+                    </p>
+                  </div>
+                  <ExternalLinkIcon className="h-8 ml-2" />
+                </div>
+                <div className="h-[1px] bg-black opacity-30 my-5 w-full" />
+                <div className="flex justify-between items-center cursor-pointer">
+                  <div className="flex flex-col w-4/5">
+                    <div className="w-1/2">
+                      <p className="text-lg font-bold text-[#575a5a]">
+                        {listing.phone}
+                      </p>
+                    </div>
+                  </div>
+                  <PhoneIcon className="h-8 ml-2" />
+                </div>
+                <div className="h-[1px] bg-black opacity-30 my-5 w-full" />
+                <div className="flex justify-between items-center cursor-pointer">
+                  <div className="flex flex-col w-4/5">
+                    <p className="text-lg font-bold text-[#057C98] line-clamp-1 hover:underline ">
+                      Get Directions
+                    </p>
+                    <div className="w-1/2">
+                      <p className="text-lg font-bold text-[#575a5a] cursor-default">
+                        {listing.address}
+                      </p>
+                    </div>
+                  </div>
+                  <CubeTransparentIcon className="h-8 ml-2" />
+                </div>
+                <div className="h-[1px] bg-black opacity-30 my-5 w-full" />
+                <div className="flex justify-between items-center cursor-pointer">
+                  <div className="flex flex-col w-4/5">
+                    <p className="text-lg font-bold text-[#057C98] line-clamp-1">
+                      Message the Business
+                    </p>
+                  </div>
+                  <ChatIcon className="h-8 ml-2" />
+                </div>
               </div>
             </div>
           </div>
@@ -325,10 +390,72 @@ export default function ListingDetails(props) {
             ))}
           </div>
           <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
-          <div className="grid lg:grid-cols-3 h-fit">
+          <div className="grid lg:grid-cols-3 my-5 h-fit">
             <div className="w-full">
-              <div>
+              <div className="mb-9">
                 <Title3 text={"Best of Austin"} />
+                <MenuItem text={"This to do in Location"} route={"/"} />
+              </div>
+              <div className="">
+                <Title3 text={"Near me"} />
+                <MenuItem text={"Bakeries Near Me"} route={"/"} />
+                <MenuItem text={"Breakfast Near Me"} route={"/"} />
+                <MenuItem text={"Cheap Breakfast Near Me"} route={"/"} />
+                <MenuItem text={"Pie Places Near Me"} route={"/"} />
+              </div>
+            </div>
+            <div className="w-full">
+              <div className="mb-9">
+                <Title3 text={"Browse Nearby"} />
+                <MenuItem Icon={TruckIcon} text={"Restaurants"} route={"/"} />
+                <MenuItem Icon={TruckIcon} text={"Night Life"} route={"/"} />
+                <MenuItem
+                  Icon={ShoppingBagIcon}
+                  text={"Shopping"}
+                  route={"/"}
+                />
+                <MenuItem
+                  Icon={DotsHorizontalIcon}
+                  text={"Show all"}
+                  route={"/"}
+                />
+              </div>
+              <div className="">
+                <Title3
+                  text={"People found Kolache Factory by searching for…"}
+                />
+                <MenuItem text={"Polish Donut Austin"} route={"/"} />
+                <MenuItem text={"Breakfast Near Me"} route={"/"} />
+              </div>
+            </div>
+            <div className="w-full">
+              <div className="mb-9">
+                <Title3 text={"Dining in Location"} />
+                <MenuItem
+                  Icon={SearchIcon}
+                  text={"Search for Reservations"}
+                  route={"/"}
+                />
+                <MenuItem
+                  Icon={CalendarIcon}
+                  text={"Book a Table in Location"}
+                  route={"/"}
+                />
+              </div>
+              <div className="">
+                <Title3 text={"Other Places Nearby"} />
+                <MenuItem
+                  text={"Find more Bakeries near Kolache Factory"}
+                  route={"/"}
+                />
+                <MenuItem
+                  text={"Find more Breakfast Brunch Spots near Kolache Factory"}
+                  route={"/"}
+                />
+                <MenuItem
+                  text={"Find more Cafes near Kolache Factory"}
+                  route={"/"}
+                />
               </div>
             </div>
           </div>
@@ -341,6 +468,7 @@ export default function ListingDetails(props) {
             </div>
           ))}
           <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
+          <Footer />
         </div>
       </div>
     </div>
