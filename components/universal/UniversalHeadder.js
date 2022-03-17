@@ -5,7 +5,6 @@ import Link from "next/link";
 import UniversalHeaderMenuItem from "../home/simplecomponents/UniversalHeaderMenuItem";
 
 function UniversalHeadder({ props }) {
-  
   return (
     <div className="flex flex-col fixed w-full  bg-white z-10 h-fit border-b-[1px] px-10 py-5">
       <div className="flex justify-between items-center ">
@@ -21,19 +20,19 @@ function UniversalHeadder({ props }) {
           </a>
         </Link>
         <div className="flex flex-col justify-center flex-1 ml-72">
-          <div className="flex shadow-slate-400 shadow rounded-md w-full">
+          <div className="flex shadow-slate-400 shadow-search-box rounded-md w-full">
             <div className="flex justify-center items-center content-center  bg-white p-2  rounded-l-md flex-grow ">
               <input
                 type="text"
                 name="dssds"
                 id="category"
-                value={props.searchName}
+                defaultValue={props.searchName}
                 placeholder="Nail salons, Plumbers, Takeout..."
                 className="mt-1 ml-2 block w-full shadow-sm  text-black font-normal focus:outline-none focus:bg-transparent"
               />
-              <div className=" border-r-2 border-b-slate-900 mx-5" />
+              <div className=" h-full border-r-2 bg-black mx-5" />
               <input
-                type="text"
+                type="address"
                 name="dssds"
                 id="category"
                 placeholder="Address, Neighborhood, City, State or Zip"

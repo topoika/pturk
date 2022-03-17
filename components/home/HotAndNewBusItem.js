@@ -3,7 +3,7 @@ import { StarIcon } from "@heroicons/react/solid";
 
 function HotAndNewBusItem({ name, img, reviews, cost, city, country, open }) {
   return (
-    <div className="flex flex-col border pb-2 rounded-md group shadow-lg group cursor-pointer hover:shadow-2xl">
+    <div className="flex flex-col border pb-2 rounded-md group shadow-main-box-shadow group cursor-pointer hover:shadow-2xl">
       <Image src={img} alt={name} width="350" height="200" />
       <div className="px-2 py-2">
         <p className="text-xl font-bold text-[#0073bb]  ">{name}</p>
