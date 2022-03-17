@@ -64,7 +64,6 @@ export default function ListingDetails(props) {
   const createMarkUp = (text) => {
     return { __html: text };
   };
-
   return (
     <div>
       <UniversalHeadder props={{ searchName: listing.name }} />
@@ -145,7 +144,7 @@ export default function ListingDetails(props) {
           </div>
         </div>
         <div className="flex flex-col h-fit absolute justify-center max-w-6xl py-5 w-9/12  top-[40vh]">
-          <div className=" flex w-full h-fit rounded-md border justify-start items-center shadow-md mb-7">
+          <div className=" flex w-full h-fit rounded-md border justify-start items-center shadow-search-box mb-7">
             <div className="h-16 w-2 bg-[#1F8EFF] rounded-tl-md rounded-bl-md " />
             <InformationCircleIcon className="text-[#1F8EFF] h-7 w-7 mx-5" />
             <div className="flex items-center justify-center">
@@ -243,10 +242,46 @@ export default function ListingDetails(props) {
               {/* Reviews reconmentation */}
               <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
               <Title2 text={"Recommended Reviews"} />
-              <ReviewItem />
+              {props.reviews.data.map((review) => (
+                <ReviewItem key={review.index} review={review} />
+              ))}
               <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
               <Title2 text={"Collections Including " + listing.name} />
-              <ReviewItem />
+              <div className="flex justify-between items-center pt-2">
+                <Title3 text={"Reciently Added Collections"} />
+                <div className="flex justify-center items-center cursor-pointer">
+                  <Title3 text={"View All"} />
+                  <ChevronRightIcon className="h-4 w-4 ml-2 align-baseline text-black opacity-80" />
+                </div>
+              </div>
+              <div className="overflow-hidden grid grid-cols-4 gap-12">
+                {foods.map((one) => (
+                  <div
+                    key={one}
+                    className="h-[250px] w-[200px] flex flex-col relative rounded-md my-4"
+                  >
+                    <div className="w-full h-4/5 relative">
+                      <Image
+                        src={activeImages[one - 1]}
+                        alt="New Meal"
+                        layout="fill"
+                        className="rounded-md"
+                      />
+                      <div className="absolute flex justify-center items-center bottom-0 right-0 px-7 py-10 rounded-tl-md rounded-br-md bg-black bg-opacity-70 ">
+                        <BookmarkIcon className="stroke-white fill-white h-5 opacity-100" />
+                        <p className="text-white text-xl font-bold ml-[2px]">
+                          56
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="font-bold text-black text-[15px] opacity-80 line-clamp-1 overflow-ellipsis ml-1">
+                      Texas Food
+                    </p>
+                    <p className="ml-1">By Saral E.</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Second container */}
@@ -263,6 +298,49 @@ export default function ListingDetails(props) {
               </div>
             </div>
           </div>
+          <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
+          <Title2 text={"People also viewed"} />
+          <div className="overflow-hidden grid grid-cols-5 gap-12">
+            {foods.map((one) => (
+              <div
+                key={one}
+                className="h-[250px] w-[220px] flex flex-col relative rounded-md my-4"
+              >
+                <div className="w-full h-4/5 relative">
+                  <Image
+                    src={activeImages[one - 1]}
+                    alt="New Meal"
+                    layout="fill"
+                    className="rounded-md"
+                  />
+                </div>
+                <p className="font-bold text-black text-[15px] my-2 line-clamp-1 overflow-ellipsis ml-1">
+                  {listing.name}
+                </p>
+                <Rating rat={listing.rating} small={true} />
+                <p className="ml-1 text-[12px] my-1 font-normal opacity-80">
+                  $ • Coffee & Tea, Breakfast & Brunch, Diners
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
+          <div className="grid lg:grid-cols-3 h-fit">
+            <div className="w-full">
+              <div>
+                <Title3 text={"Best of Austin"} />
+              </div>
+            </div>
+          </div>
+          <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
+          <Title2 text={"Frequently Asked Questions about " + listing.name} />
+          {props.faqs.data.map((_faq) => (
+            <div key={_faq.index} className="flex flex-col">
+              <p className="text-base font-semibold mt-5">{_faq.question}</p>
+              <p className="text-sm my-1">{_faq.answer}</p>
+            </div>
+          ))}
+          <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
         </div>
       </div>
     </div>
@@ -276,9 +354,23 @@ export async function getServerSideProps(context) {
         context.query.id ? context.query.id : Cookies.get("viewedId")
       }`
   ).then((res) => res.json());
+  let reviews = await fetch(
+    process.env.NEXT_PUBLIC_BASE_URL +
+      `/reviews/${
+        context.query.id ? context.query.id : Cookies.get("viewedId")
+      }`
+  ).then((res) => res.json());
+  let listingFaqs = await fetch(
+    process.env.NEXT_PUBLIC_BASE_URL +
+      `/listingfaqs/${
+        context.query.id ? context.query.id : Cookies.get("viewedId")
+      }`
+  ).then((res) => res.json());
   return {
     props: {
       listing: listing,
+      reviews: reviews,
+      faqs: listingFaqs,
     },
   };
 }
