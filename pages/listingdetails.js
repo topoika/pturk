@@ -21,6 +21,7 @@ import Title3 from "../components/universal/Title3";
 import TopButton from "../components/detailspage/TopButton";
 import AmenitiesItem from "../components/detailspage/AmenitiesItem";
 import ReviewItem from "../components/detailspage/ReviewItem";
+import LocationAndHours from "../components/detailspage/LocationAndHours";
 
 export default function ListingDetails(props) {
   const listing = props.listing.data[0];
@@ -200,9 +201,11 @@ export default function ListingDetails(props) {
                 <TopButton Icon={ExternalLinkIcon} text="Website menu" />
                 <TopButton Icon={ArchiveIcon} text="Full menu" />
               </div>
-
+              {/* Location and hours */}
               <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
               <Title2 text={"Location & Hours"} />
+              <LocationAndHours listing={listing} />
+              {/* Amenities and more */}
               <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
               <Title2 text={"Amenities and More"} />
               <div className="grid grid-cols-2">
@@ -218,6 +221,7 @@ export default function ListingDetails(props) {
                   {amenities.length == 4 ? "12 More Attributes" : "Show Less"}
                 </p>
               </div>
+              {/* About the business */}
               <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
               <Title2 text={"About the Business"} />
               <p
@@ -236,10 +240,16 @@ export default function ListingDetails(props) {
                   {desc ? "Show More" : "Show Less"}
                 </p>
               </div>
+              {/* Reviews reconmentation */}
               <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
               <Title2 text={"Recommended Reviews"} />
               <ReviewItem />
+              <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
+              <Title2 text={"Collections Including " + listing.name} />
+              <ReviewItem />
             </div>
+
+            {/* Second container */}
             <div className="w-2/5">
               <div className="border border-opacity-70 rounded-md p-4">
                 <p>Promotion box</p>
