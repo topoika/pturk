@@ -37,14 +37,14 @@ export default function ListingDetails(props) {
   const listing = props.listing.data[0];
   let images = listing.images.split(",");
   const [activeImages, setactiveImages] = useState(images.slice(0, 4));
-  const [amenities, setamenities] = useState([1, 2, 3, 4]);
+  const [amenities, setamenities] = useState(props.attributes.data.slice(0, 4));
   const [desc, setdesc] = useState(true);
   const [addedImage, setAddedImage] = useState(1);
   function toggleAmenities() {
     if (amenities.length == 4) {
-      setamenities(() => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+      setamenities(() => props.attributes.data);
     } else {
-      setamenities(() => [1, 2, 3, 4]);
+      setamenities(() => props.attributes.data.slice(0, 4));
     }
   }
   function toggleDesc() {
@@ -218,8 +218,12 @@ export default function ListingDetails(props) {
               <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
               <Title2 text={"Amenities and More"} />
               <div className="grid grid-cols-2">
-                {amenities.map((one) => (
-                  <AmenitiesItem key={one} text={"Offers Delivery"} value={0} />
+                {amenities.map((_attribute) => (
+                  <AmenitiesItem
+                    key={_attribute.id}
+                    text={_attribute.name}
+                    value={_attribute.value}
+                  />
                 ))}
               </div>
               <div
@@ -227,7 +231,9 @@ export default function ListingDetails(props) {
                 className="py-2 w-fit mt-6 px-6 items-center border border-black border-opacity-70 rounded-md cursor-pointer hover:bg-[#E2E2E2]"
               >
                 <p className="text-base font-semibold">
-                  {amenities.length == 4 ? "12 More Attributes" : "Show Less"}
+                  {amenities.length == 4
+                    ? props.attributes.data.length - 4 + " More Attributes"
+                    : "Show Less"}
                 </p>
               </div>
               {/* About the business */}
@@ -500,12 +506,19 @@ export async function getServerSideProps(context) {
         context.query.id ? context.query.id : Cookies.get("viewedId")
       }`
   ).then((res) => res.json());
+  let attributes = await fetch(
+    process.env.NEXT_PUBLIC_BASE_URL +
+      `/listingattributes/${
+        context.query.id ? context.query.id : Cookies.get("viewedId")
+      }`
+  ).then((res) => res.json());
   return {
     props: {
       listing: listing,
       reviews: reviews,
       faqs: listingFaqs,
       hours: hours,
+      attributes: attributes,
     },
   };
 }

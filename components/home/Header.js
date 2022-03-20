@@ -11,12 +11,21 @@ import Delivery from "./../../public/static/images/menu/delivery.svg";
 import Love from "./../../public/static/images/menu/love.svg";
 import { useSelector } from "react-redux";
 import { useState, setstate } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/slices/userSlice";
+import Cookies from "js-cookie";
 
 function Header() {
   const useAuth = useSelector((state) => state.userReducer.user);
+  const dispatch = useDispatch();
   var [dropDown, setDropDown] = useState(false);
   function setDropDownClick(params) {
     setDropDown((dropDown) => (dropDown = !dropDown));
+  }
+
+  function logoutUser() {
+    dispatch(logout());
+    Cookies.remove("session_token");
   }
   return (
     <div className=" max-w-6xl w-9/12 h-4/5  ">
@@ -90,8 +99,8 @@ function Header() {
                     </a>
                   </Link>
                   <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700"
+                    onClick={logoutUser}
+                    className="cursor-pointer block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
                     id="user-menu-item-2"
                     tabIndex="-1"
