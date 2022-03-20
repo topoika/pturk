@@ -213,7 +213,7 @@ export default function ListingDetails(props) {
               {/* Location and hours */}
               <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
               <Title2 text={"Location & Hours"} />
-              <LocationAndHours listing={listing} />
+              <LocationAndHours listing={listing} hours={props.hours.data} />
               {/* Amenities and more */}
               <div className="h-[1px] bg-black opacity-30 my-9 w-full" />
               <Title2 text={"Amenities and More"} />
@@ -494,11 +494,18 @@ export async function getServerSideProps(context) {
         context.query.id ? context.query.id : Cookies.get("viewedId")
       }`
   ).then((res) => res.json());
+  let hours = await fetch(
+    process.env.NEXT_PUBLIC_BASE_URL +
+      `/operatinghours/${
+        context.query.id ? context.query.id : Cookies.get("viewedId")
+      }`
+  ).then((res) => res.json());
   return {
     props: {
       listing: listing,
       reviews: reviews,
       faqs: listingFaqs,
+      hours: hours,
     },
   };
 }

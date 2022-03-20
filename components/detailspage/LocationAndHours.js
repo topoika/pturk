@@ -2,62 +2,19 @@ import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import { useState } from "react";
 import Title3 from "../universal/Title3";
 
-function LocationAndHours({ listing }) {
+function LocationAndHours({ listing, hours }) {
   const containerStyle = {
     width: "100%",
     height: "200px",
   };
-
   let today = new Date();
   let day = today.getDay();
   let hour = today.getHours();
-  let weekdays = [
-    {
-      day: "Mon",
-      opens: "6:00 AM",
-      closes: "9:00 PM",
-    },
-    {
-      day: "Tue",
-      opens: "6:00 AM",
-      closes: "9:00 PM",
-    },
-    {
-      day: "Wed",
-      opens: "6:00 AM",
-      closes: "9:00 PM",
-    },
-    {
-      day: "Thu",
-      opens: "6:00 AM",
-      closes: "9:00 PM",
-    },
-    {
-      day: "Fri",
-      opens: "6:00 AM",
-      closes: "9:00 PM",
-    },
-    {
-      day: "Sat",
-      opens: "6:00 AM",
-      closes: "9:00 PM",
-    },
-    {
-      day: "Sun",
-      opens: "7:00 AM",
-      closes: "9:00 PM",
-    },
-  ];
-  let activeDay = weekdays[day - 1];
-  //   if (
-  //     hour >= +activeDay.opens.substring(1, 0) &&
-  //     hour <= +activeDay.closes.substring(1, 0) + 12
-  //   ) {
-  //     setclosed(() => true);
-  //   }
+  let weekdays = hours.filter((_day) => _day.day_of_week === day);
+  let activeDay = weekdays[0];
   const [closed, setclosed] = useState(
-    hour >= +activeDay.opens.substring(1, 0) &&
-      hour <= +activeDay.closes.substring(1, 0) + 12
+    hour >= +activeDay.open_time.substring(1, 0) &&
+      hour <= +activeDay.close_time.substring(1, 0) + 12
       ? true
       : false
   );
@@ -116,18 +73,20 @@ function LocationAndHours({ listing }) {
         </div>
       </div>
       <div className="flex-col w-5/6 px-6">
-        {weekdays.map((weekday) => (
+        {hours.map((weekday) => (
           <div key={weekday.day} className="grid grid-cols-3 items-center">
             <p className="font-semibold text-[17px] w-full mb-[7px]">
               {weekday.day}
             </p>
             <p className="font-semibold text-[17px] w-full flex justify-center items-center">
-              {weekday.opens}
+              {weekday.open_time}
               <span>
                 <div className="bg-black h-[2px] w-3 ml-1" />
               </span>
             </p>
-            <p className="font-bold text-[17px] w-full">{weekday.closes}</p>
+            <p className="font-semibold text-[17px] w-full">
+              {weekday.close_time}
+            </p>
           </div>
         ))}
       </div>
