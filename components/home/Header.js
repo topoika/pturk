@@ -111,7 +111,7 @@ function Header() {
               </div>
             </div>
           )}
-          <Link href={"/signup"}>
+          <Link href={useAuth.session ? "/user/add-listing" : "/signup"}>
             <a>
               <button
                 type="button"
