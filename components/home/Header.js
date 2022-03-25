@@ -10,7 +10,7 @@ import HomeServices from "./../../public/static/images/menu/home.svg";
 import Delivery from "./../../public/static/images/menu/delivery.svg";
 import Love from "./../../public/static/images/menu/love.svg";
 import { useSelector } from "react-redux";
-import { useState, setstate } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
 import Cookies from "js-cookie";
